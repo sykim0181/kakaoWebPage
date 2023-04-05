@@ -31,6 +31,7 @@ const MenuList = styled.ul`
   display: flex;
   padding: 0;
   margin: 0;
+  flex-shrink: 0;
   /* background-color: aliceblue; */
 `;
 
