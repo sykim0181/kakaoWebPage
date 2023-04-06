@@ -37,9 +37,9 @@ const MenuList = styled.ul`
 
 const Menu = styled.li`
   flex-shrink: 0;
-  &:not(first-of-type){
+  /* &:not(first-of-type){
     margin-left: 15px;
-  }
+  } */
 `;
 
 const Link = styled.a`
