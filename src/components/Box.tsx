@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 
 const Header = styled.div`
   display: flex;
-  background-color: blue;
+  /* background-color: blue; */
   position: relative;
   padding: 10px 0;
   align-items: center;
@@ -55,7 +55,7 @@ const CategoryText = styled.div`
 `;
 
 const Date = styled.div`
-  font-size: 7px;
+  font-size: 9px;
   color: gray;
   
 `;
@@ -90,8 +90,8 @@ const HashTag = styled.p`
 
 const Image = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  /* height: 100%; */
+  /* object-fit: cover; */
 `;
 
 
@@ -102,7 +102,7 @@ const Box: React.FC = () => {
       <Wrapper>
         <Header>
           <HeaderInfo>
-            <Icon>
+            <Icon style={{ color: "yellow" }}>
               <BsFillMegaphoneFill />
             </Icon>
             <Category>

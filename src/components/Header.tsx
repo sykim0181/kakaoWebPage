@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import styled from "@emotion/styled";
 import { BiSearch, BiGlobe, BiMoon } from 'react-icons/bi';
 
-const Base = styled.header`
+const Base = styled.header<{ showBorder: boolean }>`
   width: 100%;
+  height: 80px;
   margin: 0 auto;
-  /* background-color: beige; */
-  /* position: fixed;
+  background-color: white;
+  border-bottom: ${({ showBorder }) => showBorder ? "1px solid lightgrey" : "0px"};
+
+  position: fixed;
   top: 0;
-  left: 0; */
+  z-index: 1;
 `;
 
 const TextLogo = styled.h1`
-  
+  font-size: 25px;
 `;
 
 const Navigation = styled.nav`
@@ -71,12 +74,12 @@ const IconButton = styled.button<{ isGrayBg: boolean }>`
 
 
 
-const Header: React.FC = () => {
+const Header: React.FC<{ isBorderVisible: boolean }> = ({ isBorderVisible }) => {
   const [textBtnHover, setTextBtnHover] = useState(0);
   const [iconBtnHover, setIconBtnHover] = useState(0);
 
   return (
-    <Base>
+    <Base showBorder={isBorderVisible}>
       <Navigation>
         <MenuListWrapper>
           <MenuList>

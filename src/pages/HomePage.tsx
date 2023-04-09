@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import Header from '../components/Header';
 import Box from '../components/Box';
+import TitleWithIcon from '../components/TitleWithIcon';
 
 const Base = styled.div`
   height: 1000px;
 `;
 
 const Content = styled.div`
+  margin-top: 80px; 
   padding: 0 90px;
 `;
 
@@ -16,46 +18,74 @@ const Articles = styled.div`
   width: 100%;
 `;
 
-const ArticlesHeader = styled.div`
-  display: flex;
+const SmallHeader = styled.div<{ isVisible: boolean}>`
+  display: ${({ isVisible }) => isVisible ? "flex" : "none"};
+  border-bottom: ${({ isVisible }) => isVisible ? "1px solid lightgrey" : "0px"};
+  position: fixed;
+  top: 0;
   width: 100%;
-  margin: 0 auto;
+  height: 80px;
+  padding: 0 90px;
+  background-color: white;
+  z-index: 2;
 `;
 
-const ArticlesHeaderDay = styled.h1`
-  margin-right: 10px;
-  font-size: 18px;
+const ArticlesBigHeader = styled.div`
+  padding: 60px 0;
 `;
 
-const AritclesHeaderText = styled.h1`
-  font-size: 18px;
-`;
 
 const ArticlesTodayDate = styled.h1`
+  font-size: 45px;
+  margin: 0;
 `;
 
 const ContentHome = styled.div``;
 
 const dayToHan = (day: number) => {
-  const list = ["월","화","수","목","금","토","일"]
-  return list[day-1]
+  const list = ["일","월","화","수","목","금","토"]
+  return list[day]
 }
 
 const HomePage: React.FC = () => {
 
   const today = new Date();
 
+  const [showSH, setShowSH] = useState(false);
+  const [showHeaderBorder, setShowHeaderBorder] = useState(false);
+
+  const onScroll = () => {
+    if (window.scrollY > 80) {
+      setShowHeaderBorder(true);
+    } else {
+      setShowHeaderBorder(false);
+    }
+    if (window.scrollY > 170){
+      setShowSH(true);
+    } else {
+      setShowSH(false);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    }
+  });
+
   return (
     <Base>
-      <Header />
+      <Header isBorderVisible={showHeaderBorder} />
+      <SmallHeader isVisible={showSH}>
+        <TitleWithIcon text={"오늘의 카카오"} size={20} src={`assets/calendarDate/${today.getDate()}.png`} />
+      </SmallHeader>
       <Content>
         <Articles>
-          <ArticlesHeader>
-            <ArticlesHeaderDay>{today.getDate()}</ArticlesHeaderDay>  
-            <AritclesHeaderText>오늘의 카카오</AritclesHeaderText>
-          </ArticlesHeader>  
-          <ArticlesTodayDate>오늘의 카카오</ArticlesTodayDate>
-          <ArticlesTodayDate>{`${today.getMonth()}월 ${today.getDate()}일 ${dayToHan(today.getDay())}요일 소식입니다`}</ArticlesTodayDate>
+          <ArticlesBigHeader>
+            <TitleWithIcon text={"오늘의 카카오"} size={45} src={`assets/calendarDate/${today.getDate()}.png`} />
+            <ArticlesTodayDate>{`${today.getMonth()+1}월 ${today.getDate()}일 ${dayToHan(today.getDay())}요일 소식입니다`}</ArticlesTodayDate>
+          </ArticlesBigHeader>
           <ContentHome>
             <Box />
           </ContentHome>
