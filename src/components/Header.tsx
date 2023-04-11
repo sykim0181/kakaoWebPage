@@ -70,13 +70,14 @@ const IconButton = styled.button<{ isGrayBg: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 10px;
 `;
 
 
 
 const Header: React.FC<{ isBorderVisible: boolean }> = ({ isBorderVisible }) => {
-  const [textBtnHover, setTextBtnHover] = useState(0);
-  const [iconBtnHover, setIconBtnHover] = useState(0);
+  const [hoverTextBtn, setHoverTextBtn] = useState(0);
+  const [hoverIconBtn, setHoverIconBtn] = useState(0);
 
   return (
     <Base showBorder={isBorderVisible}>
@@ -93,9 +94,9 @@ const Header: React.FC<{ isBorderVisible: boolean }> = ({ isBorderVisible }) => 
             <Menu>
               <Link>
                 <TextButton 
-                  onMouseEnter={() => setTextBtnHover(1)} 
-                  onMouseLeave={() => setTextBtnHover(0)}
-                  isBlackFont={textBtnHover === 0 || textBtnHover === 1 ? true : false}
+                  onMouseEnter={() => setHoverTextBtn(1)} 
+                  onMouseLeave={() => setHoverTextBtn(0)}
+                  isBlackFont={hoverTextBtn === 0 || hoverTextBtn === 1 ? true : false}
                   >
                     카카오
                 </TextButton>
@@ -104,9 +105,9 @@ const Header: React.FC<{ isBorderVisible: boolean }> = ({ isBorderVisible }) => 
             <Menu>
               <Link>
                 <TextButton
-                  onMouseEnter={() => setTextBtnHover(2)} 
-                  onMouseLeave={() => setTextBtnHover(0)}
-                  isBlackFont={textBtnHover === 0 || textBtnHover === 2 ? true : false}
+                  onMouseEnter={() => setHoverTextBtn(2)} 
+                  onMouseLeave={() => setHoverTextBtn(0)}
+                  isBlackFont={hoverTextBtn === 0 || hoverTextBtn === 2 ? true : false}
                 >
                   뉴스
                 </TextButton>
@@ -115,9 +116,9 @@ const Header: React.FC<{ isBorderVisible: boolean }> = ({ isBorderVisible }) => 
             <Menu>
               <Link>
                 <TextButton
-                  onMouseEnter={() => setTextBtnHover(3)} 
-                  onMouseLeave={() => setTextBtnHover(0)}
-                  isBlackFont={textBtnHover === 0 || textBtnHover === 3 ? true : false}
+                  onMouseEnter={() => setHoverTextBtn(3)} 
+                  onMouseLeave={() => setHoverTextBtn(0)}
+                  isBlackFont={hoverTextBtn === 0 || hoverTextBtn === 3 ? true : false}
                 >
                   기술과 서비스
                 </TextButton>
@@ -126,9 +127,9 @@ const Header: React.FC<{ isBorderVisible: boolean }> = ({ isBorderVisible }) => 
             <Menu>
               <Link>
                 <TextButton
-                  onMouseEnter={() => setTextBtnHover(4)} 
-                  onMouseLeave={() => setTextBtnHover(0)}
-                  isBlackFont={textBtnHover === 0 || textBtnHover === 4 ? true : false}
+                  onMouseEnter={() => setHoverTextBtn(4)} 
+                  onMouseLeave={() => setHoverTextBtn(0)}
+                  isBlackFont={hoverTextBtn === 0 || hoverTextBtn === 4 ? true : false}
                 >
                   약속과 책임
                 </TextButton>
@@ -138,27 +139,27 @@ const Header: React.FC<{ isBorderVisible: boolean }> = ({ isBorderVisible }) => 
           <MenuList>
             <Menu>
               <IconButton
-                onMouseEnter={() => setIconBtnHover(1)} 
-                onMouseLeave={() => setIconBtnHover(0)}
-                isGrayBg={iconBtnHover === 1 ? true : false} 
+                onMouseEnter={() => setHoverIconBtn(1)} 
+                onMouseLeave={() => setHoverIconBtn(0)}
+                isGrayBg={hoverIconBtn === 1 ? true : false} 
               >
                 <BiSearch />
               </IconButton>
             </Menu>
             <Menu>
               <IconButton
-                onMouseEnter={() => setIconBtnHover(2)} 
-                onMouseLeave={() => setIconBtnHover(0)}
-                isGrayBg={iconBtnHover === 2 ? true : false} 
+                onMouseEnter={() => setHoverIconBtn(2)} 
+                onMouseLeave={() => setHoverIconBtn(0)}
+                isGrayBg={hoverIconBtn === 2 ? true : false} 
               >
                 <BiGlobe />
               </IconButton>
             </Menu>
             <Menu>
               <IconButton
-                onMouseEnter={() => setIconBtnHover(3)} 
-                onMouseLeave={() => setIconBtnHover(0)}
-                isGrayBg={iconBtnHover === 3 ? true : false} 
+                onMouseEnter={() => setHoverIconBtn(3)} 
+                onMouseLeave={() => setHoverIconBtn(0)}
+                isGrayBg={hoverIconBtn === 3 ? true : false} 
               >
                 <BiMoon />
               </IconButton>

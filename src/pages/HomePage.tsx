@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Header from '../components/Header';
 import Box from '../components/Box';
 import TitleWithIcon from '../components/TitleWithIcon';
+import BoxWithPhoto from '../components/BoxWithPhoto';
 
 const Base = styled.div`
   height: 1000px;
@@ -41,6 +42,11 @@ const ArticlesTodayDate = styled.h1`
 `;
 
 const ContentHome = styled.div``;
+
+const Boxes = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const dayToHan = (day: number) => {
   const list = ["일","월","화","수","목","금","토"]
@@ -87,7 +93,10 @@ const HomePage: React.FC = () => {
             <ArticlesTodayDate>{`${today.getMonth()+1}월 ${today.getDate()}일 ${dayToHan(today.getDay())}요일 소식입니다`}</ArticlesTodayDate>
           </ArticlesBigHeader>
           <ContentHome>
-            <Box />
+            <Boxes>
+              <BoxWithPhoto isBig={true} />
+              <BoxWithPhoto isBig={false} />
+            </Boxes>
           </ContentHome>
         </Articles>  
       </Content>
