@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { BsFillMegaphoneFill, BsThreeDotsVertical } from 'react-icons/bs';
+import { BsThreeDotsVertical } from 'react-icons/bs';
+import BalloonWithIcon from './BalloonWithIcon';
 
 const Base = styled.div``;
 
@@ -20,7 +21,7 @@ const Header = styled.div`
   display: flex;
   /* background-color: blue; */
   position: relative;
-  padding: 10px 0 0 0;
+  padding: 20px 0 0 0;
   align-items: center;
 `;
 
@@ -30,38 +31,11 @@ const HeaderInfo = styled.div`
   margin-left: 15px;
 `;
 
-const Icon = styled.div`
-  font-size: 30px;  
-`;
-
-const Category = styled.div`
-  position: relative;
-  width: 90px;
-  height: 40px;
-`;
-
-
-const Balloon = styled.img`
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 80%;
-  height: 80%;
-`;
-
-const CategoryText = styled.div`
-  font-size: 11px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  text-align: center;
-`;
 
 const Date = styled.div`
   font-size: 9px;
   color: gray;
-  
+  margin-left: 10px;
 `;
 
 const OptionButton = styled.button`
@@ -121,13 +95,7 @@ const BoxWithPhoto: React.FC<{isBig: boolean}> = ({isBig}) => {
       >
         <Header>
           <HeaderInfo>
-            <Icon style={{ color: "yellow" }}>
-              <BsFillMegaphoneFill />
-            </Icon>
-            <Category>
-              <Balloon src="assets/balloon.png" alt="말풍선" />
-              <CategoryText>보도자료</CategoryText>
-            </Category>
+            <BalloonWithIcon category="esg" />
             <Date>2023.04.06</Date>
           </HeaderInfo>
           <OptionButton>
