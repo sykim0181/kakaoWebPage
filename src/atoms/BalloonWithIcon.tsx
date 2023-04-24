@@ -11,7 +11,7 @@ const Icon = styled.img`
   margin-right: 3px;
 `;
 
-const Category = styled.div`
+const CategoryWrapper = styled.div`
   position:  relative;
   /* width: 90px; */
   /* height: 40px; */
@@ -58,10 +58,10 @@ const BalloonWithIcon: React.FC<Props> = ({ category }) => {
   return (
     <Base>
         <Icon src={`assets/category/${category}.png`} />
-      <Category>
+      <CategoryWrapper>
         <Balloon textWidth={getCategoryText(category)?.length} src="assets/balloon.png" alt="말풍선" />
         <CategoryText>{getCategoryText(category)}</CategoryText>
-      </Category>
+      </CategoryWrapper>
     </Base>
   )
 }

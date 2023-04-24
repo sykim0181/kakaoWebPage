@@ -4,18 +4,21 @@ import { BiSearch, BiGlobe, BiMoon } from 'react-icons/bi';
 
 const Base = styled.header<{ showBorder: boolean }>`
   width: 100%;
-  height: 80px;
-  margin: 0 auto;
-  background-color: white;
+  height: 70px;
   border-bottom: ${({ showBorder }) => showBorder ? "1px solid lightgrey" : "0px"};
-
   position: fixed;
   top: 0;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 `;
 
 const TextLogo = styled.h1`
   font-size: 25px;
+  margin: 0;
+  padding: 0;
 `;
 
 const Navigation = styled.nav`
@@ -26,7 +29,9 @@ const MenuListWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 90px;
+  /* padding: 0 90px; */
+  /* background-color: beige; */
+  width: 1240px;
 `;
 
 const MenuList = styled.ul`
@@ -70,17 +75,21 @@ const IconButton = styled.button<{ isGrayBg: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
+  :nth-of-type(even) {
+    margin: 10px;
+  }
 `;
 
+interface Props {
+  isBorderVisible: boolean;
+}
 
-
-const Header: React.FC<{ isBorderVisible: boolean }> = ({ isBorderVisible }) => {
+const Header: React.FC<Props> = (props) => {
   const [hoverTextBtn, setHoverTextBtn] = useState(0);
   const [hoverIconBtn, setHoverIconBtn] = useState(0);
 
   return (
-    <Base showBorder={isBorderVisible}>
+    <Base showBorder={props.isBorderVisible}>
       <Navigation>
         <MenuListWrapper>
           <MenuList>

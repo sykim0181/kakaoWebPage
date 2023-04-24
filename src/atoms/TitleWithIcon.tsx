@@ -19,17 +19,17 @@ const Title = styled.div<{size:number}>`
 `;
 
 interface Props {
-  text: string;
-  size: number;
-  src: string;
+  text: string,
+  size: number,
+  src: string
 }
 
-const TitleWithIcon: React.FC<Props> = ({text, size, src}) => {
+const TitleWithIcon: React.FC<Props> = (props) => {
 
   return (
     <Base>
-      <Icon size={size} src={src} />
-      <Title size={size}>{text}</Title>
+      <Icon size={props.size} src={props.src} />
+      <Title size={props.size}>{props.text}</Title>
     </Base>
   )
 }
