@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { AiOutlineArrowUp } from 'react-icons/ai'
 import Header from '../organisms/Header';
 import TitleWithIcon from '../atoms/TitleWithIcon';
@@ -13,17 +14,25 @@ import RoundTextButton from '../atoms/RoundTextButton';
 import Spacer from '../atoms/Spacer';
 import RoundButton from '../atoms/RoundButton';
 import Footer from '../organisms/Footer';
+import { isOnContentAtom, isSearchOpenAtom } from '../atoms';
 
 const Base = styled.div`
-  height: 1000px;
+  width: 100%;
+  position: relative;
+
+  &.fixed {
+    position: fixed;
+    overflow-y: scroll;
+  }
 `;
 
-const Content = styled.div`
+const Content = styled.div<{ isSearchOpen: boolean }>`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+  opacity: ${({ isSearchOpen }) => isSearchOpen ? ".3" : "1"};
 `;
 
 
@@ -31,7 +40,7 @@ const ContentBigHeader = styled.div`
   padding: 60px 0;
   width: 1240px;
   margin: auto;
-  background-color: green;
+  /* background-color: green; */
 `;
 
 
@@ -54,7 +63,7 @@ const Part1 = styled.div`
 
 const Part1Left = styled.div`
   width: 600px;
-  height: 1060px;
+  /* height: 1060px; */
 `;
 
 const Part1LeftBox = styled.div<{ scrollOnPart1:boolean }>`
@@ -122,12 +131,14 @@ const dayToHan = (day: number) => {
 }
 
 const HomePage: React.FC = () => {
-
   const today = new Date();
 
-  const [showSH, setShowSH] = useState(false);//SmallHeader
+  const isOnContent = useRecoilValue(isOnContentAtom);
+  const setIsOnContent = useSetRecoilState(isOnContentAtom);
   const [showHeaderBorder, setShowHeaderBorder] = useState(false);//Header Border
   const [scrollOnPart1, setScrollOnPart1] = useState(false);
+
+  const isSearchOpen = useRecoilValue(isSearchOpenAtom);
 
   const part1RightBoxTypeList = [['article','article','esg'],['stock','article','esg']];
   const part4LeftBoxTypeList = [['cs'],['privacy']];
@@ -140,15 +151,23 @@ const HomePage: React.FC = () => {
       setShowHeaderBorder(false);
     }
     if (window.scrollY > 170){
-      setShowSH(true);
+      setIsOnContent(true);
     } else {
-      setShowSH(false);
+      setIsOnContent(false);
     }
     if (window.scrollY > 200 && window.scrollY < 1360) {
       setScrollOnPart1(true);
     } else {
       setScrollOnPart1(false);
     }
+
+    if (isSearchOpen) {
+      window.scrollTo(0,0);
+    } 
+  }
+
+  const scrollToTop = () => {
+    window.scroll(0,0);
   }
 
   useEffect(() => {
@@ -158,20 +177,21 @@ const HomePage: React.FC = () => {
     }
 }, []);
 
+
   return (
-    <Base>
+    <Base className={isSearchOpen ? 'fixed' : ''}>
       <Header isBorderVisible={showHeaderBorder} />
-      <Content>
+      <ContentSmallHeader 
+        text={"오늘의 카카오"}
+        size={20} 
+        src={`assets/calendarDate/${today.getDate()}.png`} 
+        isVisible={isOnContent}  
+      />
+      <Content isSearchOpen={isSearchOpen}>
         <ContentBigHeader>
           <TitleWithIcon text={"오늘의 카카오"} size={45} src={`assets/calendarDate/${today.getDate()}.png`} />
           <PostsTodayDate>{`${today.getMonth()+1}월 ${today.getDate()}일 ${dayToHan(today.getDay())}요일 소식입니다`}</PostsTodayDate>
         </ContentBigHeader>
-        <ContentSmallHeader 
-          text={"오늘의 카카오"}
-          size={20} 
-          src={`assets/calendarDate/${today.getDate()}.png`} 
-          isVisible={showSH}  
-        />
         <ContentHome>
           <Part1>
             <Part1Left>
@@ -212,7 +232,11 @@ const HomePage: React.FC = () => {
           <Part6>
             <Spacer orientation='horizontal' size={90} />
             <RoundTextButton text="카카오 소식 모아보기" />
-            <div style={{ position: "absolute", bottom: "20px", right: "0" }}>
+            <div style={{ position: "absolute", bottom: "20px", right: "0" }} 
+              onClick={() => {
+                scrollToTop();
+              }}
+            >
               <RoundButton size={50} icon={AiOutlineArrowUp} />
             </div>
           </Part6>

@@ -11,6 +11,8 @@ const Base = styled.ul`
   padding: 5px 0;
 `;
 
+// const Policy = styled.div``;
+
 const PolicyElement = styled.li`
   list-style: none;
 `;

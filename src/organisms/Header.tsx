@@ -1,18 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from "@emotion/styled";
 import { BiSearch, BiGlobe, BiMoon } from 'react-icons/bi';
+import { AiOutlineClose } from 'react-icons/ai';
+import SearchModal from '../molecules/SearchModal';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { isOnContentAtom, isSearchOpenAtom } from '../atoms';
+import { keyframes } from '@emotion/react';
+// import { keyframes } from 'styled-components';
 
-const Base = styled.header<{ showBorder: boolean }>`
+
+const Base = styled.header`
   width: 100%;
-  height: 70px;
-  border-bottom: ${({ showBorder }) => showBorder ? "1px solid lightgrey" : "0px"};
-  position: fixed;
+  height: fit-content;
+  position: sticky;
   top: 0;
   z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
+
+  &.hidden {
+    top: -80px;
+    transition: all .8s;
+  }
 `;
 
 const TextLogo = styled.h1`
@@ -21,8 +28,14 @@ const TextLogo = styled.h1`
   padding: 0;
 `;
 
-const Navigation = styled.nav`
-  /* background-color: aqua; */
+
+const Navigation = styled.nav<{ showBorder: boolean}>`
+  border-bottom: ${({ showBorder }) => showBorder ? "1px solid lightgrey" : "0px"};
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 `;
 
 const MenuListWrapper = styled.div`
@@ -32,6 +45,16 @@ const MenuListWrapper = styled.div`
   /* padding: 0 90px; */
   /* background-color: beige; */
   width: 1240px;
+  position: relative;
+
+  &.hidden {
+    & :nth-child(2) {
+      opacity: 0;
+    }
+    & :nth-child(3) {
+      opacity: 0;
+    }
+  }
 `;
 
 const MenuList = styled.ul`
@@ -41,6 +64,10 @@ const MenuList = styled.ul`
   margin: 0;
   flex-shrink: 0;
   /* background-color: aliceblue; */
+/*   
+  &:nth-of-type(2) {
+    opacity: 0;
+  } */
 `;
 
 const Menu = styled.li`
@@ -80,6 +107,31 @@ const IconButton = styled.button<{ isGrayBg: boolean }>`
   }
 `;
 
+const CloseButton = styled.div<{ isVisible: boolean }>`
+  position: absolute;
+  right: 0;
+  font-size: 30px;
+  cursor: pointer;
+  visibility: ${({ isVisible }) => isVisible ? "visible" : "hidden"};
+`;
+
+const SearchModalWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  /* background-color: beige; */
+  height: 0;
+  
+  &.visible {
+    height: 430px;
+    transition: all .5s;
+  }
+  &.hidden {
+    height: 0;
+    transition: all .5s;
+  }
+`;
+
+
 interface Props {
   isBorderVisible: boolean;
 }
@@ -88,14 +140,18 @@ const Header: React.FC<Props> = (props) => {
   const [hoverTextBtn, setHoverTextBtn] = useState(0);
   const [hoverIconBtn, setHoverIconBtn] = useState(0);
 
+  const isSearchOpen = useRecoilValue(isSearchOpenAtom);
+  const setIsSearchOpen = useSetRecoilState(isSearchOpenAtom);
+  const isOnContent = useRecoilValue(isOnContentAtom);
+
   return (
-    <Base showBorder={props.isBorderVisible}>
-      <Navigation>
-        <MenuListWrapper>
+    <Base className={isOnContent ? 'hidden' : ''}>
+      <Navigation showBorder={props.isBorderVisible}>
+        <MenuListWrapper className={!isSearchOpen ? 'visible' : 'hidden'}>
           <MenuList>
             <Menu>
               <Link>
-                <TextLogo>KAKAO</TextLogo>
+                <TextLogo>kakao</TextLogo>
               </Link>
             </Menu>
           </MenuList>
@@ -148,6 +204,7 @@ const Header: React.FC<Props> = (props) => {
           <MenuList>
             <Menu>
               <IconButton
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
                 onMouseEnter={() => setHoverIconBtn(1)} 
                 onMouseLeave={() => setHoverIconBtn(0)}
                 isGrayBg={hoverIconBtn === 1 ? true : false} 
@@ -174,8 +231,16 @@ const Header: React.FC<Props> = (props) => {
               </IconButton>
             </Menu>
           </MenuList>
+          <CloseButton 
+            onClick={() => setIsSearchOpen(false)} 
+            isVisible={isSearchOpen}>
+            <AiOutlineClose />
+          </CloseButton>
         </MenuListWrapper>
       </Navigation>
+      <SearchModalWrapper className={isSearchOpen ? 'visible' : 'hidden'}>
+        <SearchModal />
+      </SearchModalWrapper>
     </Base>
   )
 }

@@ -2,7 +2,9 @@ import React from 'react';
 import styled from "@emotion/styled";
 import { IconType } from 'react-icons/lib';
 
-const Base = styled.div``;
+const Base = styled.div`
+  cursor: pointer;
+`;
 
 const Button = styled.div<{ size: number }>`
   width: ${({ size }) => `${size}px`};
@@ -14,6 +16,10 @@ const Button = styled.div<{ size: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background-color: #454545;
+  }
 `;
 
 interface Props {
