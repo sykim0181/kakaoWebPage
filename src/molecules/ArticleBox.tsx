@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import BalloonWithIcon from '../atoms/BalloonWithIcon';

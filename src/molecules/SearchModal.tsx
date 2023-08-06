@@ -11,35 +11,6 @@ const Base = styled.div`
   width: 1240px;
 `;
 
-const Header = styled.div`
-  height: 70px;
-  /* background-color: beige; */
-  display: flex;
-  align-items: center;
-  position: relative;
-  opacity: 0;
-
-  &.visible {
-    opacity: 1;
-  }
-  &.hidden {
-    opacity: 0;
-  }
-`;
-
-const PageTitle = styled.h1`
-  font-size: 25px;
-  margin: 0;
-  padding: 0;
-`;
-
-const CloseButton = styled.div`
-  position: absolute;
-  right: 0;
-  font-size: 30px;
-  cursor: pointer;
-`;
-
 const SearchBlockGroup = styled.div`
   display: flex;
   align-items: center;
@@ -115,22 +86,12 @@ const HashTag = styled.div`
   padding: 7px 10px;
 `;
 
-interface Props {
 
-}
-
-const SearchModal: React.FC<Props> = (props) => {
+const SearchModal: React.FC = () => {
   const isSearchOpen = useRecoilValue(isSearchOpenAtom);
-  const setIsSearchOpen = useSetRecoilState(isSearchOpenAtom);
 
   return (
     <Base>
-      {/* <Header className={isSearchOpen ? 'visible' : 'hidden'}>
-        <PageTitle>kakao</PageTitle>
-        <CloseButton onClick={() => setIsSearchOpen(false)}>
-          <AiOutlineClose />
-        </CloseButton>
-      </Header> */}
       <SearchBlockGroup className={isSearchOpen ? 'visible' : 'hidden'}>
         <div>
           <SearchBlock>

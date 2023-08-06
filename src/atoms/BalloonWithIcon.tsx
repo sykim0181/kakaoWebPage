@@ -13,17 +13,10 @@ const Icon = styled.img`
 
 const CategoryWrapper = styled.div`
   position:  relative;
-  /* width: 90px; */
-  /* height: 40px; */
 `;
 
 
 const Balloon = styled.img<{ textWidth: number }>`
-  /* position: absolute; */
-  /* top: 5px;
-  left: 5px; */
-  /* width: 80%; */
-  /* height: 80%; */
   width: ${({ textWidth }) => `${textWidth*16}px`};
   height: 32px;
 `;

@@ -1,16 +1,12 @@
 // /** @jsxImportSource @emotion/react */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from '@emotion/styled/macro';
 import FooterNavTitle from '../atoms/FooterNavTitle';
-import Spacer from '../atoms/Spacer';
-import OpenableRoundTextButton from '../atoms/OpenableRoundTextButton';
-import Block from '../atoms/Block';
-import TextClickBox from '../molecules/TextClickBox';
 import FooterPolicies from '../molecules/FooterPolicies';
 import OpenableBlocks from '../molecules/OpenableBlocks';
 
 const Base = styled.div`
-  background-color: beige;
+  /* background-color: beige; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,29 +63,12 @@ const Part2 = styled.div`
   /* background-color: green; */
 `;
 
-const PoliciyList = styled.ul`
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 5px 0;
-`;
-
-const PolicyElement = styled.li`
-  list-style: none;
-  /* position: relative; */
-`;
-
 
 const RelativeSite = styled.div`
   position: absolute;
   right:0;
 `;
 
-const RelSiteBlock = styled.div<{ len: number }>`
-  position: absolute;
-  top: ${({ len }) => `-${len*12+10*(len-1)+20*2 + 20}px`};
-  left: 0;
-`;
 
 const Copyright = styled.div`
   /* background-color: pink; */

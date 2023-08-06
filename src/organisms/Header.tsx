@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from "@emotion/styled";
 import { BiSearch, BiGlobe, BiMoon } from 'react-icons/bi';
 import { AiOutlineClose } from 'react-icons/ai';
 import SearchModal from '../molecules/SearchModal';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isOnContentAtom, isSearchOpenAtom } from '../atoms';
-import { keyframes } from '@emotion/react';
-// import { keyframes } from 'styled-components';
 
 
 const Base = styled.header`

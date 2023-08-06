@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from '@emotion/styled/macro';
 import { ElType } from '../organisms/Footer';
 import TextClickBox from './TextClickBox';
@@ -11,7 +11,6 @@ const Base = styled.ul`
   padding: 5px 0;
 `;
 
-// const Policy = styled.div``;
 
 const PolicyElement = styled.li`
   list-style: none;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled/macro';
 import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
 
@@ -32,7 +32,6 @@ interface Props {
 }
 
 const OpenableRoundTextButton: React.FC<Props> = (props) => {
-  // const [isOpened, setIsOpened] = useState(false);
 
   return (
     <Base width={props.size} >

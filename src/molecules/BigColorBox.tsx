@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Box from '../atoms/Box';
 
-const Base = styled.div``;
 
 const BigColorBox: React.FC = () => {
   return (
