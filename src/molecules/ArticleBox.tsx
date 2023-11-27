@@ -42,8 +42,8 @@ const OptionButton = styled.button`
   right: 10px;
 `;
 
-const Title = styled.div`
-  /* background-color: lightblue; */
+const Title = styled.div<{isBig: boolean}>`
+  margin: ${({isBig}) => isBig ? "15px 0" : "10px 0"};
 `;
 
 const TitleText = styled.h1<{isBig: boolean}>`
@@ -65,17 +65,20 @@ type Size = "S" | "M" | "L";
 
 interface Props {
   size: Size;
+  date: string;
+  title: string;
+  hashtag: string[];
+  imgUrl: string;
 }
 
 const ArticleBox: React.FC<Props> = (props) => {
 
   const getSize = (size: Size) => {
-    if (size === "S") return { width: 280, height: 400 };
+    if (size === "S") return { width: 280, height: 350 };
     else if (size === "M") return { width: 400, height:500 };
     else return { width: 600, height: 600 };
   }
 
-  const hashtagContents = ["카카오커머스","커머스CIC","쇼핑탭","프로모션"];
 
   return (
     <Box size={getSize(props.size)}>
@@ -83,19 +86,19 @@ const ArticleBox: React.FC<Props> = (props) => {
         <Header>
           <HeaderInfo>
             <BalloonWithIcon category='article' />
-            <Date>2023.04.06</Date>
+            <Date>{props.date}</Date>
           </HeaderInfo>
           <OptionButton>
             <BsThreeDotsVertical />
           </OptionButton>
         </Header>
           <Content>
-            <Title>
-              <TitleText isBig={props.size==="L" ? true : false}>카카오메이커스, 지역 양조장 발굴 위한 전통주 기획전 진행. 카카오메이커스, 지역 양조장 발굴 위한 전통주 기획전 진행</TitleText>
+            <Title isBig={props.size==="L" ? true : false}>
+              <TitleText isBig={props.size==="L" ? true : false}>{props.title}</TitleText>
             </Title>
-            <Hashtags contents={hashtagContents} />
+            <Hashtags contents={props.hashtag} />
           </Content>
-          <Image src="assets/dj.jpg" />
+          <Image src={props.imgUrl} />
       </Base>
     </Box>
   )

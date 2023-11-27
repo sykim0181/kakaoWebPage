@@ -8,8 +8,6 @@ import ArticleBox from '../molecules/ArticleBox';
 import MSBoxGroup from '../organisms/MSBoxGroup';
 import ContentSmallHeader from '../organisms/ContentSmallHeader';
 import Box from '../atoms/Box';
-import Banner from '../organisms/Banner';
-import BigColorBox from '../molecules/BigColorBox';
 import RoundTextButton from '../atoms/RoundTextButton';
 import Spacer from '../atoms/Spacer';
 import RoundButton from '../atoms/RoundButton';
@@ -124,6 +122,10 @@ const Part6 = styled.div`
   position: relative;
 `;
 
+const Img = styled.img`
+  width: 100%;
+`;
+
 
 const dayToHan = (day: number) => {
   const list = ["일","월","화","수","목","금","토"]
@@ -140,8 +142,6 @@ const HomePage: React.FC = () => {
 
   const isSearchOpen = useRecoilValue(isSearchOpenAtom);
 
-  const part1RightBoxTypeList = [['article','article','esg'],['stock','article','esg']];
-  const part4LeftBoxTypeList = [['cs'],['privacy']];
 
   const onScroll = () => {
     // console.log(window.scrollY);
@@ -196,37 +196,54 @@ const HomePage: React.FC = () => {
           <Part1>
             <Part1Left>
               <Part1LeftBox scrollOnPart1={scrollOnPart1}>
-                <ArticleBox size={"L"} />
+                <ArticleBox 
+                  size={"L"} 
+                  date={'2023.04.06'}
+                  title={'카카오메이커스, 지역 양조장 발굴 위한 전통주 기획전 진행. 카카오메이커스, 지역 양조장 발굴 위한 전통주 기획전 진행'}
+                  hashtag={["카카오커머스","커머스CIC","쇼핑탭","프로모션"]}
+                  imgUrl={'https://t1.kakaocdn.net/thumb/R1920x0.fwebp.q100/?fname=https%3A%2F%2Ft1.kakaocdn.net%2Fkakaocorp%2Fkakaocorp%2Fadmin%2Fnews%2Ffb86cbbc018800001.png'}
+                />
               </Part1LeftBox>
             </Part1Left>
             <Part1Right>
-              <MSBoxGroup boxTypeList={part1RightBoxTypeList} />
+              <MSBoxGroup type='long' />
             </Part1Right>
           </Part1>
           <Part2>
             <Box size={{ width: 1240, height: 500 }}>
-              <Banner />
+              <Img src='assets/banner.png' />
             </Box>
           </Part2>
           <Part3>
-            <Box size={{ width: 1240, height: 150 }}>
-              <div></div>
+            <Box size={{ width: 1240, height: 120 }}>
+            <Img src='assets/banner2.png' />
             </Box>
           </Part3>
           <Part4>
             <Part4Left>
-              <MSBoxGroup boxTypeList={part4LeftBoxTypeList} />
+              <MSBoxGroup type='short' />
             </Part4Left>
             <Part4Right>
-              <ArticleBox size='L' />
+              <ArticleBox 
+                size='L'
+                date={'2023.11.21'} 
+                title={`'무인도의 디바', 글로벌 5위-40개국 TOP10 등극`}
+                hashtag={['카카오엔터테인먼트', '무인도의디바', 'K콘텐츠흥행']}
+                imgUrl='https://t1.kakaocdn.net/thumb/R1920x0.fwebp.q100/?fname=https%3A%2F%2Ft1.kakaocdn.net%2Fkakaocorp%2Fkakaocorp%2Fadmin%2Fnews%2Fef990149018b00001.jpeg'
+              
+              />
             </Part4Right>
           </Part4>
           <Part5>
             <Part5Button>
-              <BigColorBox />
+              <Box size={{ width:600,height:320 }}>
+                <Img src='assets/banner3.png' />
+              </Box>
             </Part5Button>
             <Part5Button>
-              <BigColorBox />
+              <Box size={{ width:600,height:320 }}>
+                <Img src='assets/banner4.png' />
+              </Box>            
             </Part5Button>
           </Part5>
           <Part6>

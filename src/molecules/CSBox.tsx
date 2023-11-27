@@ -15,6 +15,10 @@ const Content = styled.div`
   padding-top: 15px;
 `;
 
+const Img = styled.img`
+  width: 100%;
+`;
+
 
 const CSBox: React.FC = () => {
 
@@ -25,7 +29,7 @@ const CSBox: React.FC = () => {
           <BalloonWithIcon category='cs' />
         </Header>
         <Content>
-          
+          <Img src='assets/cs.png' alt="어떤 서비스를 도와드릴까요?"/>
         </Content>
       </Base>
     </Box>
