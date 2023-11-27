@@ -2,7 +2,7 @@
 
 
 
-![결과1](https://github.com/sykim0181/kakaoWebPage/assets/83769339/f325138f-8d2e-4800-970c-df6d10218a73)
+![결과1](https://github.com/sykim0181/kakaoWebPage/assets/83769339/f4ac6732-ffdc-4410-90ee-b467849c5568)
 
 
 
